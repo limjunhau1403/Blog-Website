@@ -4,9 +4,7 @@
 <head>
     <title>About Us</title>
 </head>
-@section('styles')
-    <link rel="stylesheet" href="{{ asset('css/pages/about.css') }}">
-@endsection
+<link rel="stylesheet" href="{{ asset('css/pages/about.css') }}">
 <body>
     @include('components.header')
     
