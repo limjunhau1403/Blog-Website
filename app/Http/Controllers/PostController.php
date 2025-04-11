@@ -14,16 +14,30 @@ class PostController extends Controller
         return response()->json($posts);
     }
 
+    // PostController.php
+    public function create()
+    {
+        return view('createPost'); // Ensure you have a Blade file at resources/views/posts/create.blade.php
+    }
+
+    public function edit($id)
+    {
+        $post = Post::findOrFail($id);
+        return view('posts.edit', ['post' => $post]); // Ensure resources/views/posts/edit.blade.php exists
+    }
+
     public function store(Request $request)
     {
         $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
+            'image' => 'required',
         ]);
 
         $post = new Post([
             'title' => $request->title,
             'content' => $request->content,
+            'image' => $request->image,
             'user_id' => Auth::id(),
         ]);
 
@@ -49,11 +63,13 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
+            'image' => 'required',
         ]);
 
         $post->update([
             'title' => $request->title,
             'content' => $request->content,
+            'image' => $request->image,
         ]);
 
         return response()->json($post);

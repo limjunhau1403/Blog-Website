@@ -13,6 +13,9 @@
         <label for="content">Content:</label>
         <textarea name="content" id="content" required></textarea>
         <br>
+        <label for="image">Thumbnail:</label>
+        <input type="file" name="image" id="image" require>
+        <br>
         <button type="submit">Post</button>
     </form>
 </body>

@@ -7,7 +7,6 @@
     <!-- Load CSS -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/components/header.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/pages/about.css') }}">
     @stack('styles') <!-- For page-specific CSS -->
 </head>
 <body>
