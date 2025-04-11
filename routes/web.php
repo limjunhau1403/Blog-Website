@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Post;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,17 +20,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Home page (protected by auth middleware)
+// For the about page
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
+
+// Home page (shows all posts)
 Route::get('/home', function () {
-    $posts = Post::with('user')->latest()->get();
+    $posts = App\Models\Post::with('user')->latest()->get();
     return view('home', ['posts' => $posts]);
-})->middleware('auth'); // Uses session-based auth
+});//->middleware('auth');
 
-// Post creation form (Blade)
-Route::get('/posts/create', [PostController::class, 'create'])->middleware('auth');
-Route::post('/posts', [PostController::class, 'store'])->middleware('auth');
+// Post creation routes
+Route::get('/posts/create', [PostController::class, 'create'])->name('posts.createPost');//->middleware('auth');
+Route::post('/posts', [PostController::class, 'store'])->name('posts.store');//->middleware('auth');
 
-// Edit/Delete routes (Blade + form submissions)
-Route::get('/posts/{id}/edit', [PostController::class, 'edit'])->middleware('auth');
-Route::put('/posts/{id}', [PostController::class, 'update'])->middleware('auth');
-Route::delete('/posts/{id}', [PostController::class, 'destroy'])->middleware('auth');
+// Edit/Update/Delete routes
+Route::get('/posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit');//->middleware('auth');
+Route::put('/posts/{id}', [PostController::class, 'update'])->name('posts.update');//->middleware('auth');
+Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');//->middleware('auth');
