@@ -27,4 +27,15 @@ class ResetPasswordController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
+
+
+    /**
+     * Show the form for reseting password.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showResetForm()
+    {
+        return view('auth.passwords.reset');
+    }
 }
