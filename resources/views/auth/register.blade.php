@@ -8,7 +8,7 @@
     </div>
 
     <!-- Form Section -->
-    <form id="loginForm" class="form-section" method="POST" action="{{ route('login') }}">
+    <form id="registrationForm" class="form-section" method="POST" action="{{ route('register.submit') }}">
         @csrf
 
         <div class="form-group">
@@ -16,7 +16,7 @@
             <input type="text" id="name" name="name" value="{{ old('name') }}"
                 placeholder="Enter your full name" required />
             @error('name')
-                <span class="text-danger">{{ $message }}</span>
+                <span class="text-danger" style="color: #FFD11A">{{ $message }}</span>
             @enderror
         </div>
 
@@ -25,7 +25,7 @@
             <input id="email" name="email" type="email" value="{{ old('email') }}" placeholder="Enter your email"
                 required />
             @error('email')
-                <span class="text-danger">{{ $message }}</span>
+                <span class="text-danger" style="color: #FFD11A">{{ $message }}</span>
             @enderror
         </div>
 
@@ -34,16 +34,16 @@
             <input id="password" name="password" type="password" value="{{ old('password') }}"
                 placeholder="Enter your password" required />
             @error('password')
-                <span class="text-danger">{{ $message }}</span>
+                <span class="text-danger" style="color: #FFD11A">{{ $message }}</span>
             @enderror
         </div>
 
         <div class="form-group">
             <label for="password-confirm">{{ __('Confirm Password') }}</label>
-            <input id="password-confirm" name="password_confirmation" type="password" value="{{ old('name') }}"
-                placeholder="Enter your password" required />
+            <input id="password-confirm" name="password_confirmation" type="password"
+                value="{{ old('password_confirmation') }}" placeholder="Enter your confirm password" required />
             @error('password')
-                <span class="text-danger">{{ $message }}</span>
+                <span class="text-danger" style="color: #FFD11A">{{ $message }}</span>
             @enderror
         </div>
 

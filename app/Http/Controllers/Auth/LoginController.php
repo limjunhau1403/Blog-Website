@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -38,6 +40,24 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    // handle login request
+    public function login(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|string|min:8',
+        ]);
+
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
+            session()->flash('login-success', 'You have logged in successfully!');
+            return redirect()->route('home');
+        }
+
+        // if login fails, redirect back with error message in flash session
+        session()->flash('invalid-credentials', 'Invalid credentials. Please try again.');
+        return back()->withInput($request->only('email', 'remember'));
+    }
+
     /**
      * Show the application's login form.
      *
@@ -45,6 +65,6 @@ class LoginController extends Controller
      */
     public function showLoginForm()
     {
-        return view('auth.login');
+        return view('auth.login', ['url' => 'login']);
     }
 }
