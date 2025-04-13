@@ -9,7 +9,7 @@
     @include('components.header')
     
     <div class="about-hero">
-        <h1>About Our Blog</h1>
+        <h1>About Our Blog test</h1>
         <p>This is a simple blog platform where users can share their thoughts and ideas.</p>
     </div>
 </body>

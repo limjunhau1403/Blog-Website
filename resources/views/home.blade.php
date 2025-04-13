@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Home</title>
     <style>
@@ -8,11 +9,13 @@
             margin: 0;
             padding: 0;
         }
+
         #posts {
             max-width: 800px;
             margin: 2rem auto;
             padding: 0 1rem;
         }
+
         .post {
             margin-bottom: 2rem;
             padding: 1rem;
@@ -21,6 +24,7 @@
         }
     </style>
 </head>
+
 <body>
     @include('components.header')
 
@@ -40,4 +44,5 @@
         @endforeach
     </div>
 </body>
+
 </html>

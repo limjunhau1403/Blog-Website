@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,3 +43,21 @@ Route::post('/posts', [PostController::class, 'store'])->name('posts.store');//-
 Route::get('/posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit');//->middleware('auth');
 Route::put('/posts/{id}', [PostController::class, 'update'])->name('posts.update');//->middleware('auth');
 Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');//->middleware('auth');
+
+//Authentication routes
+Auth::routes();
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Register routes
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [RegisterController::class, 'register'])->name('register.submit');
+Route::get('/register/verify/{token}', [RegisterController::class, 'verify'])->name('register.verify');
+
+// Login routes
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
+
+// Reset password routes
+Route::get('/password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('/password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('/password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
