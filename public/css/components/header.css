@@ -4,7 +4,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 20px 40px;
-    background: #f8f9fa;
+    background-color: #232536;
     border-bottom: 1px solid #e1e1e1;
 }
 
@@ -22,11 +22,17 @@ header nav {
 
 header nav a {
     text-decoration: none;
-    color: #333;
+    color: #ffffff;
+    font-size: 16px;
     font-weight: 500;
     transition: color 0.3s;
+    align-self: center;
 }
 
 header nav a:hover {
     color: #4f46e5; /* Purple hover effect */
+}
+
+header nav a.active {
+    font-weight: 700;
 }
