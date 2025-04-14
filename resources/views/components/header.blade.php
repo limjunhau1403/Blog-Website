@@ -18,7 +18,7 @@
         <a href="{{ route('contact') }}">{{ __('Contact') }}</a>
 
         {{-- Admin Dashboard --}}
-        @if (Auth::check() && Auth::user()->isAdmin())
+        @if (Auth::check() && Auth::user()->is_admin)
             <a href="{{ route('admin.index') }}">{{ __('Admin') }}</a>
         @endif
 
