@@ -18,9 +18,9 @@
         <a href="{{ route('contact') }}">{{ __('Contact') }}</a>
 
         {{-- Admin Dashboard --}}
-        @if (Auth::check() && Auth::user()->is_admin)
+        @can('isAdmin')
             <a href="{{ route('admin.index') }}">{{ __('Admin') }}</a>
-        @endif
+        @endcan
 
         {{-- Profile Icon --}}
         <a href="{{ Auth::check() ? route('profile.show') : route('login') }}">

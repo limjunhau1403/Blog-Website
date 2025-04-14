@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>{{ isset($url) ? ucwords($url) : HighBlog }} Page</title>
+    <title>{{ isset($url) ? ucwords($url) : '' }} | HighBlog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://fonts.googleapis.com/css?family=Poppins:700,600,400" rel="stylesheet">
     <link href="{{ asset('css/pages/auth.css') }}" rel="stylesheet" />
