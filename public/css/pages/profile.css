@@ -1,0 +1,65 @@
+/* Container spacing */
+.profile-container {
+    margin-top: 32px;
+}
+
+/* Title */
+.profile-title,
+.blog-title,
+.section-title {
+    color: #232536;
+    font-weight: bold;
+}
+
+/* Edit button */
+.profile-edit-link {
+    background-color: #ffd11a;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.profile-edit-link a {
+    text-decoration: none;
+    color: #232536;
+}
+
+.profile-edit-link:hover {
+    background-color: #232536;
+}
+
+.profile-edit-link:hover a {
+    color: #ffffff;
+}
+
+/* Card title inside user info or blog */
+.card-title {
+    color: #232536;
+    font-weight: bold;
+}
+
+/* Logout button styles */
+.logout-card {
+    margin-top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    height: 50px;
+    width: 100%;
+    max-width: 200px;
+    transition: 0.3s;
+}
+
+.logout-card a {
+    color: #232536;
+    background-color: #ffd11a;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.logout-card:hover a {
+    color: #ffffff;
+    background-color: #232536;
+}

@@ -36,6 +36,7 @@ Route::get('/contact', function () {
     return view('contact', ['url' => 'contact us']);
 })->name('contact');
 
+
 // Home page (shows all posts)
 // Route::get('/home', function () {
 //     $posts = App\Models\Post::with('user')->latest()->get();
