@@ -1,0 +1,57 @@
+/* Container spacing */
+.contact-container {
+    margin-top: 32px;
+}
+
+/* Title styling */
+.contact-container .contact-title {
+    font-size: 40px;
+    font-weight: bold;
+    color: #232536;
+}
+
+/* Subtitle styling */
+.contact-container .contact-subtitle {
+    font-size: 16px;
+    margin-bottom: 24px;
+}
+
+/* Form styling */
+.contact-form {
+    background-color: #31323c;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Form group spacing */
+.contact-form .form-group {
+    margin-bottom: 16px;
+}
+
+/* Label styling */
+.contact-form label {
+    font-weight: bold;
+    color: #ffd11a;
+}
+
+/* Input & textarea styling */
+.contact-form input,
+.contact-form textarea {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Submit button */
+.contact-form button {
+    background-color: #ffd11a;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    color: #232536;
+    font-weight: bold;
+    cursor: pointer;
+}
