@@ -8,13 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     use HasFactory;
-    // A comment belongs to a user
+
+    protected $fillable = ['user_id', 'post_id', 'content'];
+
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    // A comment belongs to a post
     public function post()
     {
         return $this->belongsTo(Post::class);
