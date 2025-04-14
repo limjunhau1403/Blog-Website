@@ -2,7 +2,6 @@
 <link rel="stylesheet" href="{{ asset('css/pages/profile.css') }}">
 
 @section('content')
-    <x-alertbox />
 
     <div class="container profile-container">
         <div class="d-flex justify-content-between align-items-center mb-4">

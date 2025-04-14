@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,10 +33,8 @@ Route::get('/about', function () {
 })->name('about');
 
 // For the contact page
-Route::get('/contact', function () {
-    return view('contact', ['url' => 'contact us']);
-})->name('contact');
-
+Route::get('/contact', [ContactController::class, 'show'])->name('contact');
+Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 
 // Home page (shows all posts)
 // Route::get('/home', function () {

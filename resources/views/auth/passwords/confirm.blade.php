@@ -7,9 +7,6 @@
         <p class="form-description">{{ __('Please confirm your password before continuing.') }}</p>
     </div>
 
-    <!-- Alert Box -->
-    <x-alertbox />
-
     <!-- Form Section -->
     <form class="form-section" method="POST" action="{{ route('password.confirm') }}">
         @csrf

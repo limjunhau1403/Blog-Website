@@ -7,9 +7,6 @@
         <a href="{{ route('login') }}" class="need-account">{{ __('Back to Login') }}</a>
     </div>
 
-    <!-- Alert Box -->
-    <x-alertbox />
-
     <!-- Form Section -->
     <form class="form-section" method="POST" action="{{ route('password.email') }}">
         @csrf

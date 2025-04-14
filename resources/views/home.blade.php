@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    <x-alertbox />
-
     <div id="posts">
         {{-- @foreach ($posts as $post) --}}
         <div class="post">

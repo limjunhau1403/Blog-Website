@@ -7,8 +7,6 @@
             <h1 class="profile-title">{{ __('Edit Profile') }}</h1>
         </div>
 
-        <x-alertbox />
-
         <div class="card mb-4 profile-edit-form">
             <div class="card-body">
                 <form method="POST" action="{{ route('profile.update') }}">

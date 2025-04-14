@@ -7,9 +7,6 @@
         <a href="{{ route('register') }}" class="need-account">{{ __('Need an account') }}?</a>
     </div>
 
-    <!-- Alert Box -->
-    <x-alertbox />
-
     <!-- Form Section -->
     <form id="loginForm" class="form-section" method="POST" action="{{ route('login.submit') }}">
         @csrf
