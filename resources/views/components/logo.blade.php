@@ -1,5 +1,5 @@
 <link href="{{ asset('css/components/logo.css') }}" rel="stylesheet">
-<a class="logo-container" href="{{ route('home') }}">
+<a class="logo-container" href="/">
     <div class="logo">
         <svg width="{{ $width }}" height="{{ $height }}" viewBox="{{ $viewBox }}" fill="none"
             xmlns="http://www.w3.org/2000/svg">

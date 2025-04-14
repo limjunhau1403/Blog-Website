@@ -11,7 +11,7 @@
             <!-- Navigation links -->
             <nav>
                 <ul>
-                    <li><a href="{{ route('home') }}">{{ __('Home') }}</a></li>
+                    <li><a href="/">{{ __('Home') }}</a></li>
                     <li><a href="{{ route('about') }}">{{ __('About us') }}</a></li>
                     <li><a href="{{ route('contact') }}">{{ __('Contact us') }}</a></li>
                 </ul>
