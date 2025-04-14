@@ -6,14 +6,19 @@
 /* Title */
 .profile-title,
 .blog-title,
-.section-title {
+.section-title,
+.user-information {
     color: #232536;
     font-weight: bold;
 }
 
+.user-information {
+    font-size: 16px;
+}
+
 /* Edit button */
 .profile-edit-link {
-    background-color: #ffd11a;
+    background-color: #232536;
     font-weight: bold;
     padding: 8px 16px;
     border-radius: 4px;
@@ -22,18 +27,24 @@
 
 .profile-edit-link a {
     text-decoration: none;
-    color: #232536;
-}
-
-.profile-edit-link:hover {
-    background-color: #232536;
-}
-
-.profile-edit-link:hover a {
     color: #ffffff;
 }
 
+.profile-edit-link:hover {
+    background-color: #ffd11a;
+}
+
+.profile-edit-link:hover a {
+    color: #232536;
+}
+
 /* Card title inside user info or blog */
+.card-body {
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
 .card-title {
     color: #232536;
     font-weight: bold;

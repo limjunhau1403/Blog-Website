@@ -7,12 +7,8 @@
         <a href="{{ route('login') }}" class="need-account">{{ __('Back to Login') }}</a>
     </div>
 
-    <!-- Success Message -->
-    @if (session('status'))
-        <div class="alert alert-success text-center mb-3">
-            {{ session('status') }}
-        </div>
-    @endif
+    <!-- Alert Box -->
+    <x-alertbox />
 
     <!-- Form Section -->
     <form class="form-section" method="POST" action="{{ route('password.email') }}">

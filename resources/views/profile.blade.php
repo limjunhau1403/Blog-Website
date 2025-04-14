@@ -2,6 +2,8 @@
 <link rel="stylesheet" href="{{ asset('css/pages/profile.css') }}">
 
 @section('content')
+    <x-alertbox />
+
     <div class="container profile-container">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h1 class="profile-title">{{ __('Profile') }}</h1>
@@ -13,10 +15,10 @@
 
         <div class="card mb-4">
             <div class="card-body">
-                <h5 class="card-title">{{ __('User Information') }}</h5>
-                <p><strong class="profile-title">{{ __('Name:') }}</strong> {{ auth()->user()->name }}</p>
-                <p><strong class="profile-title">{{ __('Email:') }}</strong> {{ auth()->user()->email }}</p>
-                <p><strong class="profile-title">{{ __('Type:') }}</strong>
+                <h3 class="card-title">{{ __('User Information') }}</h3>
+                <p><strong class="user-information">{{ __('Name:') }}</strong> {{ auth()->user()->name }}</p>
+                <p><strong class="user-information">{{ __('Email:') }}</strong> {{ auth()->user()->email }}</p>
+                <p><strong class="user-information">{{ __('Type:') }}</strong>
                     {{ auth()->user()->is_admin ? __('Admin') : __('User') }}
                 </p>
             </div>
