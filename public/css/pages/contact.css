@@ -55,3 +55,7 @@
     font-weight: bold;
     cursor: pointer;
 }
+
+.contact-form button:hover {
+    background-color: #4f46e5;
+}

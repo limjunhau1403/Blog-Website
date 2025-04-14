@@ -2,13 +2,14 @@
 <link rel="stylesheet" href="{{ asset('css/pages/contact.css') }}">
 
 @section('content')
+
     <div class="container contact-container">
         <p class="contact-title">{{ __('Contact Us') }}</p>
         <p class="contact-subtitle">
             {{ __('If you have any questions, feel free to reach out to us by filling out the form below.') }}
         </p>
 
-        <form action="{{ route('contact') }}" method="POST" class="contact-form">
+        <form action="{{ route('contact.submit') }}" method="POST" class="contact-form">
             @csrf
             <div class="form-group">
                 <label for="name">{{ __('Name:') }}</label>

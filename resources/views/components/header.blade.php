@@ -4,7 +4,7 @@
     </div>
     <nav class="nav">
         {{-- Home --}}
-        <a href="/home">{{ __('Home') }}</a>
+        <a href="/">{{ __('Home') }}</a>
 
         {{-- About --}}
         <a href="/about">{{ __('About') }}</a>

@@ -59,6 +59,22 @@ class LoginController extends Controller
     }
 
     /**
+     * Log the user out of the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('login')->with('success', 'You have been logged out successfully.');
+    }
+
+    /**
      * Show the application's login form.
      *
      * @return \Illuminate\Http\Response
