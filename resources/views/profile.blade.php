@@ -41,21 +41,19 @@
         @endif
 
         {{-- Logout Button --}}
-        @if (Auth::check())
-            <div class="card mb-4"
-                style="margin: auto; text-align: center; height: 50px; width: 80%; background-color: #FFD11A; position:absolute; bottom: 10px;"
-                onmouseover="this.style.backgroundColor='#232536'; this.querySelector('a').style.color='#FFFFFF';"
-                onmouseout="this.style.backgroundColor='#FFD11A'; this.querySelector('a').style.color='#232536';">
-                <a href="{{ route('logout.submit') }}"
-                    style="color: #232536; text-decoration: none; font-size: 24px; font-weight: bold;"
-                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    {{ __('Logout') }}
-                </a>
+        <div class="card mb-4"
+            style="margin: auto; text-align: center; height: 50px; width: 80%; background-color: #FFD11A; position:absolute; bottom: 10px;"
+            onmouseover="this.style.backgroundColor='#232536'; this.querySelector('a').style.color='#FFFFFF';"
+            onmouseout="this.style.backgroundColor='#FFD11A'; this.querySelector('a').style.color='#232536';">
+            <a href="{{ route('logout.submit') }}"
+                style="color: #232536; text-decoration: none; font-size: 24px; font-weight: bold;"
+                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                {{ __('Logout') }}
+            </a>
 
-                <form id="logout-form" action="{{ route('logout.submit') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
-            </div>
-        @endif
+            <form id="logout-form" action="{{ route('logout.submit') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+        </div>
     </div>
 @endsection
