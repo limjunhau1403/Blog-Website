@@ -76,3 +76,6 @@ Route::get('/profile/edit', [UserController::class, 'editProfile'])->name('profi
 
 // Admin 
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
