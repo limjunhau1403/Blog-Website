@@ -35,36 +35,39 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'content' => 'required|string',
-            'image' => 'required|image|max:2048', 
-        ]);
+        try {
+            $validated = $request->validate([
+                'title' => 'required|string|max:255',
+                'content' => 'required|string',
+                'image' => 'required|image|max:2048', 
+            ]);
     
-        // Get file and ensure proper handling
-        $file = $request->file('image');
-        $extension = strtolower($file->getClientOriginalExtension());
-        
-        // Normalize jpg to jpeg
-        if ($extension === 'jpg') {
-            $extension = 'jpeg';
+            $file = $request->file('image');
+            $extension = strtolower($file->getClientOriginalExtension());
+    
+            if ($extension === 'jpg') {
+                $extension = 'jpeg';
+            }
+    
+            $imagePath = $file->storeAs(
+                'post_images',
+                'post_'.time().'.'.$extension,
+                'public'
+            );
+    
+            Post::create([
+                'title' => $validated['title'],
+                'content' => $validated['content'],
+                'image' => $imagePath,
+                'user_id' => Auth::id(),
+            ]);
+    
+            return redirect('/')->with('success', 'Post created successfully!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Something went wrong while creating the post. Please try again.');
         }
-    
-        $imagePath = $file->storeAs(
-            'post_images',
-            'post_'.time().'.'.$extension,
-            'public'
-        );
-    
-        Post::create([
-            'title' => $validated['title'],
-            'content' => $validated['content'],
-            'image' => $imagePath,
-            'user_id' => Auth::id(),
-        ]);
-    
-        return redirect('/')->with('success', 'Post created successfully!');
     }
+    
 
     public function update(Request $request, $id)
     {
@@ -117,26 +120,28 @@ class PostController extends Controller
             // Log the error
             \Log::error("Post update failed: " . $e->getMessage());
             
-            return back()
-                ->withInput()
-                ->with('error', 'Failed to update post. Please try again.');
+            return back()->withInput()->with('error', 'Failed to update post. Please try again.');
         }
     }
 
     public function destroy($id)
     {
-        $post = Post::findOrFail($id);
+        try {
+            $post = Post::findOrFail($id);
     
-        if ($post->user_id !== Auth::id()) {
-            abort(403, 'Unauthorized');
+            if ($post->user_id !== Auth::id()) {
+                abort(403, 'Unauthorized');
+            }
+    
+            if ($post->image) {
+                Storage::disk('public')->delete($post->image);
+            }
+    
+            $post->delete();
+    
+            return redirect('/profile')->with('success', 'Post deleted successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Failed to delete the post. Please try again.');
         }
-    
-        if ($post->image) {
-            Storage::disk('public')->delete($post->image);
-        }
-    
-        $post->delete();
-    
-        return redirect('/profile')->with('success', 'Post deleted successfully');
     }
 }
