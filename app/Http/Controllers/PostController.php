@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\File;
 
 class PostController extends Controller
 {
@@ -22,11 +23,21 @@ class PostController extends Controller
         return view('showPost', compact('post'));
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        return view('createPost'); 
+        $tempImagePath = public_path('storage/temp_images');
+    
+        if (!session()->pull('just_previewed')) {
+            if (File::exists($tempImagePath)) {
+                File::cleanDirectory($tempImagePath);
+            }
+    
+            session()->forget('preview_post');
+        }
+    
+        return view('createPost');
     }
-
+    
     public function edit($id)
     {
         $post = Post::findOrFail($id);
@@ -61,9 +72,20 @@ class PostController extends Controller
                 'image' => $imagePath,
                 'user_id' => Auth::id(),
             ]);
+
+            if (session()->has('preview_post.image')) {
+                Storage::disk('public')->delete(session('preview_post.image'));
+                session()->forget('preview_post');
+            }
     
             return redirect('/')->with('success', 'Post created successfully!');
         } catch (\Exception $e) {
+            
+            if (session()->has('preview_post.image')) {
+                Storage::disk('public')->delete(session('preview_post.image'));
+                session()->forget('preview_post');
+            }
+
             return redirect()->back()->with('error', 'Something went wrong while creating the post. Please try again.');
         }
     }
@@ -144,4 +166,42 @@ class PostController extends Controller
             return redirect()->back()->with('error', 'Failed to delete the post. Please try again.');
         }
     }
+
+    public function preview(Request $request)
+    {
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+            'image' => 'nullable|image|max:2048',
+        ]);
+    
+        $imagePath = null;
+    
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $extension = strtolower($file->getClientOriginalExtension());
+    
+            if ($extension === 'jpg') {
+                $extension = 'jpeg';
+            }
+    
+            $imagePath = $file->storeAs(
+                'temp_images',
+                'preview_' . time() . '.' . $extension,
+                'public'
+            );
+        }
+    
+        // Save preview post + flag to prevent deletion
+        session([
+            'preview_post' => [
+                'title' => $validated['title'],
+                'content' => $validated['content'],
+                'image' => $imagePath
+            ],
+            'just_previewed' => true
+        ]);
+    
+        return redirect()->route('posts.create');
+    }    
 }

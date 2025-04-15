@@ -44,6 +44,8 @@ Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show')
 // Post creation routes
 Route::get('/createPost', [PostController::class, 'create'])->name('posts.create');
 Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
+Route::post('/posts/preview', [PostController::class, 'preview'])->name('posts.preview');
+
 
 // Edit/Update/Delete routes
 Route::get('/posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit');

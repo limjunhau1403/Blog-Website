@@ -21,12 +21,12 @@
         @endif
         <div class="form-group">
             <label for="title">Title:</label>
-            <input type="text" name="title" id="title" required>
+            <input type="text" name="title" id="title" required value="{{ session('preview_post.title') ?? old('title') }}">
         </div>
         
         <div class="form-group">
             <label for="content">Content:</label>
-            <textarea name="content" id="content" required></textarea>
+            <textarea name="content" id="content" required>{{ session('preview_post.content') ?? old('content') }}</textarea>
         </div>
         
         <div class="form-group">
@@ -39,12 +39,36 @@
                 <input type="file" name="image" id="image" required accept="image/jpeg,image/png,image/jpg,image/gif,image/webp">
             </div>
             <div class="image-preview" id="imagePreview">
-                <img id="previewImage" src="#" alt="Preview" style="display: none; max-width: 100%; max-height: 200px; margin-top: 15px; border-radius: 4px;">
+                @if(session('preview_post.image'))
+                    <img id="previewImage"
+                        src="{{ asset('storage/' . session('preview_post.image')) }}"
+                        alt="Preview"
+                        style="display: block; max-width: 100%; max-height: 200px; margin-top: 15px; border-radius: 4px;">
+                @else
+                    <img id="previewImage"
+                        src="#"
+                        alt="Preview"
+                        style="display: none; max-width: 100%; max-height: 200px; margin-top: 15px; border-radius: 4px;">
+                @endif
             </div>
         </div>
-        
-        <button type="submit">Post</button>
+        <div class="button-group">
+            <button type="submit" name="action" value="post">Post</button>
+            <button type="submit" formaction="{{ route('posts.preview') }}" name="action" value="preview">Preview</button>
+        </div>
     </form>
+    @if(session('preview_post'))
+        <div class="preview-container" style="margin-top: 50px;">
+            <h2>Preview</h2>
+            <div class="preview-box" style="border: 1px solid #ccc; padding: 20px; border-radius: 8px;">
+                <h3>{{ session('preview_post.title') }}</h3>
+                <p>{{ session('preview_post.content') }}</p>
+                @if(session('preview_post.image'))
+                    <img src="{{ asset('storage/' . session('preview_post.image')) }}" alt="Preview Image" style="max-width: 100%; max-height: 200px; margin-top: 10px;">
+                @endif
+            </div>
+        </div>
+    @endif
 </div>
 
 <script>
