@@ -6,7 +6,11 @@
         <h1>Welcome to Our Blog</h1>
         <p>Discover the latest posts and articles.</p>
         <p>High Blog include all segments such as <strong>news, travelling, gaming, tutorials, community discussions and many more!</strong> </p>
+        @if(Auth::check())
         <a href="{{ route('posts.create') }}" class="hero-btn">Create Blog</a>
+        @else
+        <a href="{{ route('login') }}" class="hero-btn">Create Blog</a>
+        @endif
     </div>
     <div class="hero-image-container">
         <div class="image-stack">
@@ -48,7 +52,11 @@
                 <h2 class="post-title">{{ $post->title }}</h2>
                 <div class="post-author">Posted by: {{ $post->user->name }}</div>
                 <p class="post-text">{{ Str::limit($post->content, 200) }}</p>
+                @if(Auth::check())
                 <a href="{{ route('posts.show', $post->id) }}" class="read-more-btn">Read full article...</a>
+                @else
+                <a href="{{ route('login') }}" class="read-more-btn">Read full article...</a>
+                @endif
             </div>
         </div>
         @empty
