@@ -49,13 +49,29 @@ class LoginController extends Controller
         ]);
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
-            session()->flash('login-success', 'You have logged in successfully!');
+            session()->flash('success', 'You have logged in successfully!');
             return redirect()->route('home');
         }
 
         // if login fails, redirect back with error message in flash session
-        session()->flash('invalid-credentials', 'Invalid credentials. Please try again.');
+        session()->flash('error', 'Invalid credentials. Please try again.');
         return back()->withInput($request->only('email', 'remember'));
+    }
+
+    /**
+     * Log the user out of the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('login')->with('success', 'You have been logged out successfully.');
     }
 
     /**

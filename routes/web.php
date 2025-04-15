@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,9 +33,8 @@ Route::get('/about', function () {
 })->name('about');
 
 // For the contact page
-Route::get('/contact', function () {
-    return view('contact', ['url' => 'contact us']);
-})->name('contact');
+Route::get('/contact', [ContactController::class, 'show'])->name('contact');
+Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 
 // Home page (shows all posts)
 // Route::get('/home', function () {
@@ -66,13 +66,15 @@ Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout.submit')->middleware('auth');
 
 // Reset password routes
-Route::get('/password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
-Route::post('/password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
-Route::get('/password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::get('/password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');  //Get the form to request a password reset link
+Route::post('/password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');    //Send the password reset link to the user's email
+Route::get('/password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');  //Get the form to reset the password
+Route::post('/password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');                 //Reset the password
 
 // Profile routes
 Route::get('/profile', [UserController::class, 'showProfile'])->name('profile.show')->middleware('auth');
-Route::get('/profile/edit', [UserController::class, 'editProfile'])->name('profile.edit')->middleware('auth');
+Route::get('/profile/edit', [UserController::class, 'showEditProfile'])->name('profile.edit')->middleware('auth');
+Route::post('/profile/update', [UserController::class, 'update'])->name('profile.update')->middleware('auth');
 
 // Admin 
-Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->middleware('auth','admin');
