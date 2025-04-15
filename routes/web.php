@@ -38,7 +38,12 @@ Route::get('/contact', [ContactController::class, 'show'])->name('contact');
 Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 
 // Single Posts in showPosts.blade.php
-Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show'); 
+Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show')->middleware('view_post'); 
+
+// View Posts History
+Route::get('/history', function () {
+    return view('history', ['url' => 'posts history']);
+})->name('history')->middleware('auth');
 
 // Post creation routes
 Route::get('/createPost', [PostController::class, 'create'])->name('posts.create');

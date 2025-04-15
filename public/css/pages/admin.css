@@ -1,111 +1,142 @@
-.about-hero {
-    color: white;
-    background-color: #31323C;
-    padding: 120px 0;
-    text-align: center;
-    margin-bottom: 60px;
-    height: 400px;
-}
-
-.hero-content {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.about-hero h1 {
-    font-size: 3.5rem;
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-}
-
-.hero-subtitle {
-    font-size: 1.5rem;
-    line-height: 1.6;
-    opacity: 0.9;
-}
-
-.about-container {
+/* Dashboard container */
+.container {
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 40px auto;
     padding: 0 20px;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.about-section {
+/* Header */
+.container h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #232536;
+}
+
+/* Filter form */
+form.mb-4 {
     display: flex;
-    align-items: center;
-    margin-bottom: 80px;
-    gap: 60px;
+    flex-wrap: wrap;
+    gap: 16px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
 }
 
-.section-content {
+form.mb-4 div {
+    display: flex;
+    flex-direction: column;
     flex: 1;
+    min-width: 200px;
 }
 
-.section-content h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    color: #2d3748;
+form.mb-4 label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #444;
 }
 
-.section-content p {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: #4a5568;
-    margin-bottom: 1.5rem;
+form.mb-4 select,
+form.mb-4 input {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
 }
 
-.section-content ul {
-    margin-left: 20px;
+form.mb-4 .btn {
+    align-self: flex-end;
+    padding: 10px 20px;
+    background-color: #232536;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
 }
 
-.section-content li {
-    margin-bottom: 0.8rem;
-    font-size: 1.1rem;
+form.mb-4 .btn:hover {
+    background-color: #ffd11a;
+    color: #232536;
 }
 
-.values-section {
-    margin: 100px 0;
-    text-align: center;
+/* Table styles */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
 }
 
-.values-section h2 {
-    font-size: 2.5rem;
-    margin-bottom: 60px;
-    color: #2d3748;
+.table thead {
+    background-color: #232536;
+    color: white;
 }
 
-.values-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
+.table thead th {
+    padding: 14px;
+    font-size: 1rem;
+    text-align: left;
 }
 
-.value-card {
-    background: white;
-    padding: 40px 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
+.table tbody td {
+    padding: 14px;
+    border-top: 1px solid #f1f1f1;
+    font-size: 0.95rem;
+    color: #333;
+    vertical-align: middle;
 }
 
-.value-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+.table tbody tr:hover {
+    background-color: #f9f9f9;
 }
 
-.value-icon {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
+/* Action buttons */
+.btn-sm {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    border-radius: 6px;
+    transition: 0.3s ease;
 }
 
-.value-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: #2d3748;
+.btn-outline-primary {
+    border: 1px solid #232536;
+    color: #232536;
+    background-color: transparent;
 }
 
-.value-card p {
-    color: #4a5568;
-    line-height: 1.6;
+.btn-outline-primary:hover {
+    background-color: #232536;
+    color: white;
+}
+
+.btn-outline-danger {
+    border: 1px solid #dc3545;
+    color: #dc3545;
+    background-color: transparent;
+}
+
+.btn-outline-danger:hover {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Pagination */
+.pagination {
+    justify-content: center;
+}
+
+.page-link {
+    color: #232536;
+}
+
+.page-item.active .page-link {
+    background-color: #232536;
+    border-color: #232536;
 }

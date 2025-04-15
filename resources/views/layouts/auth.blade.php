@@ -12,6 +12,9 @@
 <body>
     <div class="container">
         <div class="login-card">
+            <!-- Alert Box -->
+            <x-alertbox />
+
             <!-- Logo Section -->
             <div class="logo-section">
                 <x-logo :data="['width' => 50, 'height' => 50, 'fontSize' => '24px', 'viewBox' => '0 0 50 50']" />

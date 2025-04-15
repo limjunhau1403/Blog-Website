@@ -5,7 +5,8 @@
         <div class="hero-content">
             <h1>Welcome to Our Blog</h1>
             <p>Discover the latest posts and articles.</p>
-            <p>High Blog includes all segments such as <strong>news, travelling, gaming, tutorials, community discussions, and many more!</strong></p>
+            <p>High Blog includes all segments such as <strong>news, travelling, gaming, tutorials, community discussions,
+                    and many more!</strong></p>
             @if (Auth::check())
                 <a href="{{ route('posts.create') }}" class="hero-btn">Create Blog</a>
             @else
@@ -34,11 +35,14 @@
     </div>
 
     <div class="home-container">
-        <div class="header-container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+        <div class="header-container"
+            style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
             <h1 style="margin: 0;">All Posts</h1>
             <form action="{{ route('posts.index') }}" method="GET" style="display: flex; gap: 8px; align-items: center;">
-                <input type="text" name="search" placeholder="Search posts..." value="{{ request('search') }}" style="padding: 6px 10px; border-radius: 6px; border: 1px solid #ccc;">
-                <button type="submit" style="padding: 6px 12px; border: none; background-color: #007bff; color: white; border-radius: 6px;">Search</button>
+                <input type="text" name="search" placeholder="Search posts..." value="{{ request('search') }}"
+                    style="padding: 6px 10px; border-radius: 6px; border: 1px solid #ccc;">
+                <button type="submit"
+                    style="padding: 6px 12px; border: none; background-color: #232536; color: white; border-radius: 6px;">Search</button>
             </form>
         </div>
 
@@ -57,7 +61,7 @@
                         <div class="post-author">Posted by: {{ $post->user->name }}</div>
                         <p class="post-text">{{ Str::limit($post->content, 200) }}</p>
                         @if (Auth::check())
-                            <a href="{{ route('posts.show', $post->id) }}" class="read-more-btn">Read full article...</a>
+                            <a href="{{ route('posts.show', $post) }}" class="read-more-btn">Read full article...</a>
                         @else
                             <a href="{{ route('login') }}" class="read-more-btn">Read full article...</a>
                         @endif
@@ -69,5 +73,6 @@
                 </div>
             @endforelse
         </div>
+
     </div>
 @endsection

@@ -17,7 +17,8 @@
 }
 
 /* Edit button */
-.profile-edit-link {
+.profile-edit-link,
+.post-history-link {
     background-color: #232536;
     font-weight: bold;
     padding: 8px 16px;
@@ -25,7 +26,8 @@
     transition: 0.3s;
 }
 
-.profile-edit-link a {
+.profile-edit-link a,
+.post-history-link {
     text-decoration: none;
     color: #ffffff;
 }
@@ -35,6 +37,11 @@
 }
 
 .profile-edit-link:hover a {
+    color: #232536;
+}
+
+.post-history-link:hover {
+    background-color: #ffd11a;
     color: #232536;
 }
 
@@ -50,29 +57,32 @@
     font-weight: bold;
 }
 
+.profile-actions {
+    display: flex;
+    gap: 8px;
+}
+
 /* Logout button styles */
 .logout-card {
-    margin-top: 10%;
-    left: 50%;
-    transform: translateX(-50%);
     text-align: center;
-    height: 50px;
-    width: 100%;
     max-width: 200px;
-    transition: 0.3s;
 }
 
 .logout-card a {
-    color: #232536;
-    background-color: #ffd11a;
+    display: inline-block;
+    background-color: #232536;
+    color: #ffffff;
     text-decoration: none;
-    font-size: 24px;
+    font-size: 16px;
     font-weight: bold;
+    padding: 7px 20px;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-.logout-card:hover a {
-    color: #ffffff;
-    background-color: #232536;
+.logout-card a:hover {
+    background-color: #ffd11a;
+    color: #232536;
 }
 
 /* Add these styles to your profile.css */

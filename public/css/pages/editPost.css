@@ -1,65 +1,137 @@
 .edit-post-container {
     max-width: 800px;
-    margin: 0 auto;
-    margin-top: 20px;
-    padding: 2rem;
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 40px auto;
+    padding: 2.5rem;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .edit-post-container h1 {
-    margin-bottom: 2rem;
+    font-size: 2.2rem;
+    font-weight: bold;
     text-align: center;
+    color: #2c3e50;
+    margin-bottom: 2rem;
 }
 
 .form-group {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.8rem;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 0.5rem;
-    font-weight: bold;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 0.6rem;
 }
 
 .form-group input[type="text"],
 .form-group textarea {
     width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    padding: 0.75rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #f9fafb;
+    transition: border-color 0.3s;
+}
+
+.form-group input[type="text"]:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #6366f1;
+    background-color: #fff;
 }
 
 .form-group textarea {
-    min-height: 200px;
+    min-height: 180px;
     resize: vertical;
 }
 
 .current-image {
     max-width: 100%;
-    max-height: 300px;
-    display: block;
-    margin-top: 0.5rem;
+    border-radius: 8px;
+    margin-top: 0.75rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.file-input-container {
+    margin-top: 0.75rem;
+}
+
+.file-input-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 0.95rem;
+    gap: 10px;
+}
+
+.file-input-button {
+    background-color: #facc15;
+    color: #1f2937;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.file-input-button:hover {
+    background-color: #eab308;
+}
+
+.file-input-name {
+    font-size: 0.9rem;
+    color: #374151;
+}
+
+input[type="file"] {
+    position: absolute;
+    left: -9999px;
+}
+
+.image-preview {
+    margin-top: 1rem;
+}
+
+#previewImage {
+    display: none;
+    width: auto;
+    max-width: 100%;
+    max-height: 250px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 }
 
 .form-actions {
     display: flex;
+    justify-content: flex-end;
     gap: 1rem;
-    margin-top: 2rem;
+    margin-top: 2.5rem;
 }
 
 .btn {
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    font-weight: 600;
     text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .btn-primary {
-    background-color: #4f46e5;
+    font-weight: 700;
+    background-color: #232536;
     color: white;
+    padding: 8px 16px;
     border: none;
+    border-radius: 6px;
+}
+
+.btn-primary:hover {
+    background-color: #ffd11a;
+    color: #232536;
 }
 
 .btn-secondary {
@@ -68,58 +140,6 @@
     border: none;
 }
 
-/* File input container */
-.file-input-container {
-    position: relative;
-    margin-top: 10px;
-}
-
-.file-input-label {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-}
-
-.file-input-button {
-    background-color: #ffd11a;
-    color: #232536;
-    padding: 10px 15px;
-    border-radius: 4px;
-    font-weight: bold;
-    margin-right: 10px;
-    transition: background-color 0.3s;
-}
-
-.file-input-button:hover {
-    background-color: #e6b800;
-}
-
-.file-input-name {
-    color: #000000;
-    font-size: 14px;
-}
-
-/* Hide the default file input */
-input[type="file"] {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    border: 0;
-}
-
-/* Image preview styling */
-.image-preview {
-    margin-top: 10px;
-}
-
-#previewImage {
-    max-width: 100%;
-    max-height: 200px;
-    margin-top: 15px;
-    border-radius: 4px;
-    display: none;
+.btn-secondary:hover {
+    background-color: #d1d5db;
 }

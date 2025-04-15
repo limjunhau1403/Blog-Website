@@ -53,15 +53,16 @@
 .back-btn {
     display: inline-block;
     margin-top: 40px;
-    color: #4f46e5;
+    color: #ff3d3d;
     text-decoration: none;
     font-weight: 500;
-    font-size: 20px;
+    font-size: 24px;
     transition: color 0.3s;
+    margin-bottom: 24px;
 }
 
 .back-btn:hover {
-    color: #4338ca;
+    color: #232536;
 }
 
 .image-placeholder {
