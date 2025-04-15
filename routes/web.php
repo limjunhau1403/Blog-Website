@@ -11,6 +11,7 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,10 +25,7 @@ use App\Http\Controllers\ContactController;
 */
 
 // Home page (shows all posts)
-Route::get('/', function () {
-    $posts = Post::with('user')->latest()->get();
-    return view('home', compact('posts'));
-})->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // For the about page
 Route::get('/about', function () {
