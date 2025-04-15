@@ -13,9 +13,17 @@ use Illuminate\Support\Facades\Gate;
 
 class PostController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::with('user')->latest()->get();
+        // Your logic for displaying posts
+        $query = Post::with('user')->latest();
+
+        if ($request->has('search') && $request->search != '') {
+            $query->where('title', 'like', '%' . $request->search . '%')
+                  ->orWhere('content', 'like', '%' . $request->search . '%');
+        }
+
+        $posts = $query->get();
         return view('home', compact('posts'));
     }
 

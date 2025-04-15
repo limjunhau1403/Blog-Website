@@ -28,6 +28,7 @@ Route::get('/', function () {
     $posts = Post::with('user')->latest()->get();
     return view('home', compact('posts'));
 })->name('home');
+Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 
 // For the about page
 Route::get('/about', function () {
