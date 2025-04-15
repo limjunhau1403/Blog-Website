@@ -53,8 +53,15 @@
     resize: vertical;
 }
 
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px; 
+    margin-top: 20px;
+}
+
 /* Submit button */
-.blog-form button {
+.button-group button {
     background-color: #ffd11a;
     border: none;
     padding: 12px 24px;
@@ -63,10 +70,11 @@
     font-weight: bold;
     cursor: pointer;
     font-size: 16px;
+    flex: 1;
     transition: background-color 0.3s;
 }
 
-.blog-form button:hover {
+.button-group button:hover {
     background-color: #e6b800;
 }
 /* File input container */
@@ -123,4 +131,12 @@ input[type="file"] {
     margin-top: 15px;
     border-radius: 4px;
     display: none;
+}
+
+.preview-container.show {
+    display: block; 
+}
+
+.form-container.preview-mode {
+    display: none; 
 }
