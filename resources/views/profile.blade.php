@@ -27,12 +27,28 @@
         @if ($posts->isEmpty())
             <p>{{ __('No blogs posted yet.') }}</p>
         @else
-            @foreach ($posts as $blog)
+            @foreach ($posts as $post)
                 <div class="card mb-3">
                     <div class="card-body">
-                        <h5 class="card-title">{{ $blog->title }}</h5>
-                        <p class="card-text">{{ Str::limit($blog->content, 150) }}</p>
-                        <a href="{{ route('blogs.show', $blog->id) }}" class="btn btn-link">{{ __('Read More') }}</a>
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div class="post-content">
+                                <h5 class="card-title">{{ $post->title }}</h5>
+                                <p class="card-text">{{ Str::limit($post->content, 150) }}</p>
+                            </div>
+                            <div class="post-actions">
+                                <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-sm btn-outline-primary mr-2">
+                                    <i class="fas fa-edit"></i> {{ __('Edit') }}
+                                </a>
+                                <form action="{{ route('posts.destroy', $post->id) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure you want to delete this post?')">
+                                        <i class="fas fa-trash"></i> {{ __('Delete') }}
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        <a href="{{ route('posts.show', $post->id) }}" class="btn btn-link">{{ __('Read More') }}</a>
                     </div>
                 </div>
             @endforeach

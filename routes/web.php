@@ -23,8 +23,10 @@ use App\Http\Controllers\ContactController;
 |
 */
 
+// Home page (shows all posts)
 Route::get('/', function () {
-    return view('home');
+    $posts = Post::with('user')->latest()->get();
+    return view('home', compact('posts'));
 })->name('home');
 
 // For the about page
@@ -36,20 +38,17 @@ Route::get('/about', function () {
 Route::get('/contact', [ContactController::class, 'show'])->name('contact');
 Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 
-// Home page (shows all posts)
-// Route::get('/home', function () {
-//     $posts = App\Models\Post::with('user')->latest()->get();
-//     return view('home', ['posts' => $posts]);
-// });//->middleware('auth');
+// Single Posts in showPosts.blade.php
+Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show'); 
 
 // Post creation routes
-Route::get('/posts/create', [PostController::class, 'create'])->name('posts.createPost');//->middleware('auth');
-Route::post('/posts', [PostController::class, 'store'])->name('posts.store');//->middleware('auth');
+Route::get('/createPost', [PostController::class, 'create'])->name('posts.create');
+Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
 
 // Edit/Update/Delete routes
-Route::get('/posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit');//->middleware('auth');
-Route::put('/posts/{id}', [PostController::class, 'update'])->name('posts.update');//->middleware('auth');
-Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');//->middleware('auth');
+Route::get('/posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit');
+Route::put('/posts/{id}', [PostController::class, 'update'])->name('posts.update');
+Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
 
 //Authentication routes
 Auth::routes();
