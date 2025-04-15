@@ -202,6 +202,6 @@ class PostController extends Controller
             'just_previewed' => true
         ]);
     
-        return redirect()->route('posts.create');
+        return redirect()->route('posts.create')->withInput($validated)->with('image_path', $imagePath);
     }    
 }

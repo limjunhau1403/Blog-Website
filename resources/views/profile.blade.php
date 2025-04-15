@@ -42,13 +42,14 @@
                                 <form action="{{ route('posts.destroy', $post->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure you want to delete this post?')">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger"
+                                        onclick="return confirm('Are you sure you want to delete this post?')">
                                         <i class="fas fa-trash"></i> {{ __('Delete') }}
                                     </button>
                                 </form>
                             </div>
                         </div>
-                        <a href="{{ route('posts.show', $post->id) }}" class="btn btn-link">{{ __('Read More') }}</a>
+                        <a href="{{ route('posts.show', $post->id) }}" class="read-more-btn">{{ __('Read More') }}</a>
                     </div>
                 </div>
             @endforeach
