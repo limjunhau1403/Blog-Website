@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Gate;
 
 class PostController extends Controller
 {
@@ -94,54 +95,45 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         $post = Post::findOrFail($id);
-    
-        // Authorization check - ensure user owns the post
-        if ($post->user_id !== auth()->id()) {
+
+        // Authorization check using Gate
+        if (!Gate::allows('canModifyPost', $post)) {
             abort(403, 'Unauthorized action.');
         }
-    
+
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
-    
+
         try {
-            // Handle image upload if new image is provided
             if ($request->hasFile('image')) {
-                // Get file and normalize extension
                 $file = $request->file('image');
                 $extension = strtolower($file->getClientOriginalExtension());
-                
-                // Normalize jpg to jpeg for consistency
+
                 if ($extension === 'jpg') {
                     $extension = 'jpeg';
                 }
-    
-                // Delete old image if exists
+
                 if ($post->image && Storage::disk('public')->exists($post->image)) {
                     Storage::disk('public')->delete($post->image);
                 }
-    
-                // Store new image with normalized extension
+
                 $validated['image'] = $file->storeAs(
                     'post_images',
-                    'post_'.time().'.'.$extension,
+                    'post_' . time() . '.' . $extension,
                     'public'
                 );
             } else {
-                // Keep existing image if no new one uploaded
                 $validated['image'] = $post->image;
             }
-    
+
             $post->update($validated);
-    
+
             return redirect('/profile')->with('success', 'Post updated successfully!');
-    
         } catch (\Exception $e) {
-            // Log the error
             \Log::error("Post update failed: " . $e->getMessage());
-            
             return back()->withInput()->with('error', 'Failed to update post. Please try again.');
         }
     }
@@ -151,7 +143,7 @@ class PostController extends Controller
         try {
             $post = Post::findOrFail($id);
     
-            if ($post->user_id !== Auth::id()) {
+            if (!Gate::allows('canDeletePost', $post)) {
                 abort(403, 'Unauthorized');
             }
     
