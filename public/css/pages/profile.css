@@ -74,3 +74,32 @@
     color: #ffffff;
     background-color: #232536;
 }
+
+/* Add these styles to your profile.css */
+.post-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.post-actions .btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+}
+
+.post-content {
+    flex: 1;
+    margin-right: 15px;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.btn-link {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.fas {
+    margin-right: 4px;
+}

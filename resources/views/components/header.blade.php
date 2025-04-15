@@ -11,7 +11,7 @@
 
         {{-- Add Blog --}}
         @if (Auth::check())
-            <a href="{{ route('posts.createPost') }}">{{ __('Add Blog') }}</a>
+            <a href="{{ route('posts.create') }}">{{ __('Create Blog') }}</a>
         @endif
 
         {{-- Contact Us --}}

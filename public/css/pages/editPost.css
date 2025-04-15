@@ -1,0 +1,125 @@
+.edit-post-container {
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding: 2rem;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.edit-post-container h1 {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.form-group textarea {
+    min-height: 200px;
+    resize: vertical;
+}
+
+.current-image {
+    max-width: 100%;
+    max-height: 300px;
+    display: block;
+    margin-top: 0.5rem;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.btn {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background-color: #4f46e5;
+    color: white;
+    border: none;
+}
+
+.btn-secondary {
+    background-color: #e5e7eb;
+    color: #374151;
+    border: none;
+}
+
+/* File input container */
+.file-input-container {
+    position: relative;
+    margin-top: 10px;
+}
+
+.file-input-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.file-input-button {
+    background-color: #ffd11a;
+    color: #232536;
+    padding: 10px 15px;
+    border-radius: 4px;
+    font-weight: bold;
+    margin-right: 10px;
+    transition: background-color 0.3s;
+}
+
+.file-input-button:hover {
+    background-color: #e6b800;
+}
+
+.file-input-name {
+    color: #000000;
+    font-size: 14px;
+}
+
+/* Hide the default file input */
+input[type="file"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* Image preview styling */
+.image-preview {
+    margin-top: 10px;
+}
+
+#previewImage {
+    max-width: 100%;
+    max-height: 200px;
+    margin-top: 15px;
+    border-radius: 4px;
+    display: none;
+}
