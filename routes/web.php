@@ -57,7 +57,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // Register routes
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register'])->name('register.submit');
-// Route::get('/register/verify/{token}', [RegisterController::class, 'verify'])->name('register.verify');
 
 // Login routes
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
