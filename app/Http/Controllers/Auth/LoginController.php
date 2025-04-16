@@ -49,8 +49,9 @@ class LoginController extends Controller
         ]);
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
-            session()->flash('success', 'You have logged in successfully!');
-            return redirect('/');
+            $request->session()->regenerate();
+
+            return redirect()->intended('/')->with('success', 'You have logged in successfully!');
         }
 
         // if login fails, redirect back with error message in flash session

@@ -11,6 +11,7 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,10 +25,8 @@ use App\Http\Controllers\ContactController;
 */
 
 // Home page (shows all posts)
-Route::get('/', function () {
-    $posts = Post::with('user')->latest()->get();
-    return view('home', compact('posts'));
-})->name('home');
+Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // For the about page
 Route::get('/about', function () {
@@ -39,7 +38,12 @@ Route::get('/contact', [ContactController::class, 'show'])->name('contact');
 Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 
 // Single Posts in showPosts.blade.php
-Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show'); 
+Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show')->middleware('view_post'); 
+
+// View Posts History
+Route::get('/history', function () {
+    return view('history', ['url' => 'posts history']);
+})->name('history')->middleware('auth');
 
 // Post creation routes
 Route::get('/createPost', [PostController::class, 'create'])->name('posts.create');
@@ -59,7 +63,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // Register routes
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register'])->name('register.submit');
-// Route::get('/register/verify/{token}', [RegisterController::class, 'verify'])->name('register.verify');
 
 // Login routes
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');

@@ -6,13 +6,30 @@
     <div class="container profile-container">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h1 class="profile-title">{{ __('Profile') }}</h1>
-            <div class="profile-edit-link">
-                <a href="{{ route('profile.edit') }}">{{ __('Edit') }}</a>
+            <div class="profile-actions">
+                {{-- Add Post Button --}}
+                {{-- Logout Button --}}
+                <div class="card logout-card">
+                    <a href="{{ route('logout.submit') }}"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout.submit') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </div>
+
+                {{-- Edit Profile Link --}}
+                <div class="profile-edit-link">
+                    <a href="{{ route('profile.edit') }}">{{ __('Edit') }}</a>
+                </div>
             </div>
+
 
         </div>
 
-        <div class="card mb-4">
+        <div class="card mb-5">
             <div class="card-body">
                 <h3 class="card-title">{{ __('User Information') }}</h3>
                 <p><strong class="user-information">{{ __('Name:') }}</strong> {{ auth()->user()->name }}</p>
@@ -23,7 +40,13 @@
             </div>
         </div>
 
-        <h2 class="section-title">{{ __('My Blogs') }}</h2>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2 class="section-title mb-0">{{ __('My Blogs') }}</h2>
+            <a href="{{ route('history') }}" class="post-history-link">
+                {{ __('History') }}
+            </a>
+        </div>
+
         @if ($posts->isEmpty())
             <p>{{ __('No blogs posted yet.') }}</p>
         @else
@@ -42,28 +65,17 @@
                                 <form action="{{ route('posts.destroy', $post->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure you want to delete this post?')">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger"
+                                        onclick="return confirm('Are you sure you want to delete this post?')">
                                         <i class="fas fa-trash"></i> {{ __('Delete') }}
                                     </button>
                                 </form>
                             </div>
                         </div>
-                        <a href="{{ route('posts.show', $post->id) }}" class="btn btn-link">{{ __('Read More') }}</a>
+                        <a href="{{ route('posts.show', $post->id) }}" class="read-more-btn">{{ __('Read More') }}</a>
                     </div>
                 </div>
             @endforeach
         @endif
-
-        {{-- Logout Button --}}
-        <div class="card logout-card">
-            <a href="{{ route('logout.submit') }}"
-                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                {{ __('Logout') }}
-            </a>
-
-            <form id="logout-form" action="{{ route('logout.submit') }}" method="POST" style="display: none;">
-                @csrf
-            </form>
-        </div>
     </div>
 @endsection

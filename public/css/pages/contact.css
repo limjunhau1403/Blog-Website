@@ -57,5 +57,6 @@
 }
 
 .contact-form button:hover {
-    background-color: #4f46e5;
+    background-color: #e6b800;
+    color: #232536;
 }

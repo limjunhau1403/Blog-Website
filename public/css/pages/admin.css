@@ -1,0 +1,142 @@
+/* Dashboard container */
+.container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header */
+.container h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #232536;
+}
+
+/* Filter form */
+form.mb-4 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+}
+
+form.mb-4 div {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 200px;
+}
+
+form.mb-4 label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #444;
+}
+
+form.mb-4 select,
+form.mb-4 input {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+form.mb-4 .btn {
+    align-self: flex-end;
+    padding: 10px 20px;
+    background-color: #232536;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+form.mb-4 .btn:hover {
+    background-color: #ffd11a;
+    color: #232536;
+}
+
+/* Table styles */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+}
+
+.table thead {
+    background-color: #232536;
+    color: white;
+}
+
+.table thead th {
+    padding: 14px;
+    font-size: 1rem;
+    text-align: left;
+}
+
+.table tbody td {
+    padding: 14px;
+    border-top: 1px solid #f1f1f1;
+    font-size: 0.95rem;
+    color: #333;
+    vertical-align: middle;
+}
+
+.table tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* Action buttons */
+.btn-sm {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    border-radius: 6px;
+    transition: 0.3s ease;
+}
+
+.btn-outline-primary {
+    border: 1px solid #232536;
+    color: #232536;
+    background-color: transparent;
+}
+
+.btn-outline-primary:hover {
+    background-color: #232536;
+    color: white;
+}
+
+.btn-outline-danger {
+    border: 1px solid #dc3545;
+    color: #dc3545;
+    background-color: transparent;
+}
+
+.btn-outline-danger:hover {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Pagination */
+.pagination {
+    justify-content: center;
+}
+
+.page-link {
+    color: #232536;
+}
+
+.page-item.active .page-link {
+    background-color: #232536;
+    border-color: #232536;
+}
