@@ -12,6 +12,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,3 +83,6 @@ Route::post('/profile/update', [UserController::class, 'update'])->name('profile
 
 // Admin 
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->middleware('auth','admin');
+
+//Comment 
+Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');

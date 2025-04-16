@@ -23,6 +23,21 @@
                     {!! nl2br(e($post->content)) !!}
                 </div>
 
+                <h3>Comments</h3>
+                @foreach($post->comments as $comment)
+                <div>
+                    <strong>{{ $comment->user->name }}:</strong> <!-- Display user name -->
+                    <p>{{ $comment->comment }}</p>  <!-- Display comment text -->
+                </div>
+                @endforeach
+
+                <form action="{{ route('comments.store') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="post_id" value="{{ $post->id }}">
+                    <textarea name="comment" placeholder="Write your comment..." required></textarea>
+                    <button type="submit">Submit Comment</button>
+                </form>
+
             </div>
         </div>
     </div>
