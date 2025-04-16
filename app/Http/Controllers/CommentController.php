@@ -60,11 +60,11 @@ class CommentController extends Controller
         $this->authorize('update', $comment);
 
         $request->validate([
-            'content' => 'required|string',
+            'comment' => 'required|string',
         ]);
 
         $comment->update([
-            'content' => $request->content,
+            'comment' => $request->comment,
         ]);
 
         return back()->with('success', 'Comment updated successfully!');
