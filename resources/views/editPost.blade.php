@@ -46,7 +46,7 @@
 
             <div class="form-actions">
                 <button type="submit" class="btn-primary">Update Post</button>
-                <a href="/profile" class="btn btn-secondary">Cancel</a>
+                <a href="{{ url()->previous() }}" class="btn btn-secondary">Cancel</a>
             </div>
         </form>
     </div>

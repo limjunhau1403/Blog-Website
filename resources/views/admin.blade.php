@@ -75,5 +75,49 @@
         </table>
 
         {{ $posts->links() }}
+
+
+        <hr class="my-5">
+
+        <h2>User Management</h2>
+
+        <table class="table mt-3">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse($users as $user)
+                    <tr>
+                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>{{ $user->is_admin ? 'Admin' : 'User' }}</td>
+                        <td>
+                            <a href="{{ route('profile.edit', $user->id) }}" class="btn btn-sm btn-outline-primary">
+                                <i class="fas fa-edit"></i> Edit
+                            </a>
+
+                            <form action="{{ route('profile.delete', $user->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-outline-danger"
+                                    onclick="return confirm('Are you sure you want to delete this user?')">
+                                    <i class="fas fa-trash"></i> Delete
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="4">No users found.</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+
     </div>
 @endsection

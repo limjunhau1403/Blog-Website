@@ -79,6 +79,7 @@ Route::post('/password/reset', [ResetPasswordController::class, 'reset'])->name(
 Route::get('/profile', [UserController::class, 'showProfile'])->name('profile.show')->middleware('auth');
 Route::get('/profile/edit', [UserController::class, 'showEditProfile'])->name('profile.edit')->middleware('auth');
 Route::post('/profile/update', [UserController::class, 'update'])->name('profile.update')->middleware('auth');
+Route::delete('/profile/delete/{id}', [UserController::class, 'destroy'])->name('profile.delete')->middleware('auth');
 
 // Admin 
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->middleware('auth','admin');

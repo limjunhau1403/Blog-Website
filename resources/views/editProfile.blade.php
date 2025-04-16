@@ -32,7 +32,7 @@
 
                     <div class="d-flex justify-content-start gap-2">
                         <button type="submit" class="btn btn-primary">{{ __('Update Profile') }}</button>
-                        <a href="{{ route('profile.show') }}" class="btn btn-secondary">{{ __('Cancel') }}</a>
+                        <a href="{{ url()->previous() }}" class="btn btn-secondary">{{ __('Cancel') }}</a>
                     </div>
                 </form>
             </div>
