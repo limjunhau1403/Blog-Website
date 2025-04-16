@@ -105,7 +105,7 @@ class PostController extends Controller
         $post = Post::findOrFail($id);
 
         // Authorization check using Gate
-        if (!Gate::allows('canModifyPost', $post)) {
+        if (!Gate::allows('managePost', $post)) {
             abort(403, 'Unauthorized action.');
         }
 
@@ -151,7 +151,7 @@ class PostController extends Controller
         try {
             $post = Post::findOrFail($id);
     
-            if (!Gate::allows('canDeletePost', $post)) {
+            if (!Gate::allows('managePost', $post)) {
                 abort(403, 'Unauthorized');
             }
     
