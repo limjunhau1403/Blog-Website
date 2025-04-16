@@ -60,7 +60,7 @@
                 <h2>Preview</h2>
                 <div class="preview-box" style="border: 1px solid #ccc; padding: 20px; border-radius: 8px;">
                     <h3>{{ session('preview_post.title') }}</h3>
-                    <p>{{ session('preview_post.content') }}</p>
+                    <div style="white-space: pre-wrap;">{{ session('preview_post.content') }}</div>
                     @if (session('preview_post.image'))
                         <img src="{{ asset('storage/' . session('preview_post.image')) }}" alt="Preview Image"
                             style="max-width: 100%; max-height: 200px; margin-top: 10px;">
