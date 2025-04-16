@@ -9,6 +9,21 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
+    public function like(Comment $comment)
+    {
+        $like = $comment->likes()->where('user_id', auth()->id())->first();
+
+        if ($like) {
+            $like->delete(); // Unlike
+        } else {
+            $comment->likes()->create([
+                'user_id' => auth()->id()
+            ]);
+        }
+
+        return back();
+    }
+
     // Store a new comment
     public function store(Request $request)
     {

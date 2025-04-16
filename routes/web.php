@@ -86,3 +86,6 @@ Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->mi
 
 //Comment 
 Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
+
+//Like
+Route::post('/comments/{comment}/like', [CommentController::class, 'like'])->name('comments.like');

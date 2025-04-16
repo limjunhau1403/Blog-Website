@@ -33,9 +33,12 @@
                             <div style="font-size: 12px; color: #777;">{{ $comment->created_at->format('d M, Y') }}</div>
                             <p style="margin-top: 8px; font-size: 14px; color: #444;">{{ $comment->comment }}</p>
 
-                            <div style="font-size: 12px; color: #888; margin-top: 10px;">
-                                ❤️ 58 &nbsp; | &nbsp; <a href="#" style="color: #007BFF; text-decoration: none;">Reply</a>
-                            </div>
+                            <form action="{{ route('comments.like', $comment->id) }}" method="POST" style="display: inline;">
+                                @csrf
+                                <button type="submit" style="background: none; border: none; cursor: pointer; font-size: 14px;">
+                                    ❤️ {{ $comment->likes->count() }}
+                                </button>
+                            </form>
                         </div>
                     @endforeach
                 </div>
