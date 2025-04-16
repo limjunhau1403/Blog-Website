@@ -106,7 +106,7 @@ class PostController extends Controller
 
         // Authorization check using Gate
         if (!Gate::allows('managePost', $post)) {
-            abort(403, 'Unauthorized action.');
+            redirect()->back()->with('error', 'Unauthorized action. You do not have permission to edit this post.');
         }
 
         $validated = $request->validate([
@@ -152,7 +152,7 @@ class PostController extends Controller
             $post = Post::findOrFail($id);
     
             if (!Gate::allows('managePost', $post)) {
-                abort(403, 'Unauthorized');
+                return redirect()->back()->with('error', 'Unauthorized action. You do not have permission to delete this post.');
             }
     
             if ($post->image) {
