@@ -105,7 +105,7 @@ class PostController extends Controller
         $post = Post::findOrFail($id);
 
         // Authorization check using Gate
-        if (!Gate::allows('managePost', $post)) {
+        if (Gate::denies('managePost', $post)) {
             redirect()->back()->with('error', 'Unauthorized action. You do not have permission to edit this post.');
         }
 
@@ -151,7 +151,7 @@ class PostController extends Controller
         try {
             $post = Post::findOrFail($id);
     
-            if (!Gate::allows('managePost', $post)) {
+            if (Gate::denies('managePost', $post)) {
                 return redirect()->back()->with('error', 'Unauthorized action. You do not have permission to delete this post.');
             }
     
