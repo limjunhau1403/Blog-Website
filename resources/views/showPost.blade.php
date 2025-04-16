@@ -25,7 +25,7 @@
 
                 <!--- Comment --->
 
-                <h3 style="font-weight: bold; margin-bottom: 20px;">Comments</h3>
+                <!-- <h3 style="font-weight: bold; margin-bottom: 20px;">Comments</h3>
                 <div style="margin-bottom: 40px;">
                     @foreach($post->comments as $comment)
                         <div style="border-bottom: 1px solid #ddd; padding: 15px 0;">
@@ -57,9 +57,9 @@
                         style="background-color: black; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
                         Post Comment
                     </button>
-                </form>
+                </form> -->
 
-                <!-- <h3>Comments</h3>
+                <h3>Comments</h3>
                 @foreach($post->comments as $comment)
                 <div>
                     <strong>{{ $comment->user->name }}:</strong> 
@@ -72,7 +72,7 @@
                     <input type="hidden" name="post_id" value="{{ $post->id }}">
                     <textarea name="comment" placeholder="Write your comment..." required></textarea>
                     <button type="submit">Submit Comment</button>
-                </form> -->
+                </form>
 
             </div>
         </div>

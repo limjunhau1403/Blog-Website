@@ -29,13 +29,13 @@ class CommentController extends Controller
     {
         $request->validate([
             'post_id' => 'required|exists:posts,id',
-            'content' => 'required|string',
+            'comment' => 'required|string',
         ]);
 
         Comment::create([
             'user_id' => Auth::id(), // Ensure the user is logged in
             'post_id' => $request->post_id,
-            'content' => $request->content,
+            'comment' => $request->comment,
         ]);
 
         return back()->with('success', 'Comment added successfully!');
