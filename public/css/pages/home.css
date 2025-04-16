@@ -65,6 +65,7 @@
 .image-wrapper {
     position: absolute;
     overflow: hidden;
+    max-width: 200px;
 }
 
 .image-wrapper img {
@@ -88,14 +89,14 @@
 
 .image-3 {
     top: 40px;
-    right: -12%;
+    right: 42%;
     z-index: 3;
     width: 75%;
 }
 
 .image-4 {
     bottom: 30px;
-    right: -15%;
+    right: 22%;  
     z-index: 1;
     width: 60%;
 }
@@ -180,6 +181,7 @@
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 8;
+    line-clamp: 8;
     -webkit-box-orient: vertical;
 }
 
