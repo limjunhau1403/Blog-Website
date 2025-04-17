@@ -26,8 +26,8 @@ class AdminController extends Controller
             $query->has('comments');
         }
 
-        $posts = $query->latest()->paginate(2, ['*'], 'posts_page');
-        $users = User::paginate(2, ['*'], 'users_page');
+        $posts = $query->latest()->paginate(5, ['*'], 'posts_page');
+        $users = User::paginate(5, ['*'], 'users_page');
 
         return view('admin', compact('posts', 'users'));
     }
