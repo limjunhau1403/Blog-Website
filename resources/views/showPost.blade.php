@@ -24,7 +24,7 @@
                 </div>
 
                 <!--- Comment --->
-                
+                @auth
                 <h3 style="font-weight: bold; margin-bottom: 20px;">Comments</h3>
                 <div style="margin-bottom: 40px;">
                     @foreach($post->comments as $comment)
@@ -73,21 +73,9 @@
                         Post Comment
                     </button>
                 </form>
-
-                <!-- <h3>Comments</h3>
-                @foreach($post->comments as $comment)
-                <div>
-                    <strong>{{ $comment->user->name }}:</strong> 
-                    <p>{{ $comment->comment }}</p>  
-                </div>
-                @endforeach
-
-                <form action="{{ route('comments.store') }}" method="POST">
-                    @csrf
-                    <input type="hidden" name="post_id" value="{{ $post->id }}">
-                    <textarea name="comment" placeholder="Write your comment..." required></textarea>
-                    <button type="submit">Submit Comment</button>
-                </form> -->
+                @else
+                    <p>You must <a href="{{ route('login') }}">log in</a> to comment.</p>
+                @endauth
 
             </div>
         </div>

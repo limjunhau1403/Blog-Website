@@ -41,7 +41,7 @@ class CommentController extends Controller
         return back()->with('success', 'Comment added successfully!');
     }
 
-    // Show a specific comment (optional, depends on your app)
+    // Show a specific comment 
     public function show(Comment $comment)
     {
         return view('comments.show', compact('comment'));
@@ -51,7 +51,7 @@ class CommentController extends Controller
     public function edit(Comment $comment)
     {
         $this->authorize('update', $comment);
-        return view('comments.edit', compact('comment'));
+        return view('editComment', compact('comment'));
     }
 
     // Update an existing comment
@@ -67,7 +67,7 @@ class CommentController extends Controller
             'comment' => $request->comment,
         ]);
 
-        return back()->with('success', 'Comment updated successfully!');
+        return redirect()->route('posts.show', $comment->post_id)->with('success', 'Comment updated successfully!');
     }
 
     // Delete a comment
