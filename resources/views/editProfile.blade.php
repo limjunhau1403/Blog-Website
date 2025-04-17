@@ -9,7 +9,7 @@
 
         <div class="card mb-4 profile-edit-form">
             <div class="card-body">
-                <form method="POST" action="{{ route('profile.update') }}">
+                <form method="POST" action="{{ route('profile.update', ['id' => $user->id]) }}">
                     @csrf
 
                     <div class="form-group mb-3">

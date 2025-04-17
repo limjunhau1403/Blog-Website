@@ -7,7 +7,6 @@
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h1 class="profile-title">{{ __('Profile') }}</h1>
             <div class="profile-actions">
-                {{-- Add Post Button --}}
                 {{-- Logout Button --}}
                 <div class="card logout-card">
                     <a href="{{ route('logout.submit') }}"
@@ -22,7 +21,7 @@
 
                 {{-- Edit Profile Link --}}
                 <div class="profile-edit-link">
-                    <a href="{{ route('profile.edit') }}">{{ __('Edit') }}</a>
+                    <a href="{{ route('profile.edit', ['id' => auth()->user()->id]) }}">{{ __('Edit') }}</a>
                 </div>
             </div>
 
