@@ -46,27 +46,28 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
     }
 
-    public function likes() {
+    public function likes()
+    {
         return $this->hasMany(Like::class);
     }
-    
+
     protected static function boot()
-{
-    parent::boot();
+    {
+        parent::boot();
 
-    static::deleting(function ($user) {
-        // Delete user's own likes
-        $user->likes()->delete();
+        static::deleting(function ($user) {
+            // Delete user's own likes
+            $user->likes()->delete();
 
-        // Delete user's comments and their likes
-        $user->comments()->each(function ($comment) {
-            $comment->delete();
+            // Delete user's comments and their likes
+            $user->comments()->each(function ($comment) {
+                $comment->delete();
+            });
+
+            // Delete user's posts (Post model will handle their comments/likes)
+            $user->posts()->each(function ($post) {
+                $post->delete();
+            });
         });
-
-        // Delete user's posts (Post model will handle their comments/likes)
-        $user->posts()->each(function ($post) {
-            $post->delete();
-        });
-    });
-}
+    }
 }

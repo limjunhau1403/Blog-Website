@@ -47,15 +47,15 @@ Route::get('/history', function () {
 })->name('history')->middleware('auth');
 
 // Post creation routes
-Route::get('/createPost', [PostController::class, 'create'])->name('posts.create');
-Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
-Route::post('/posts/preview', [PostController::class, 'preview'])->name('posts.preview');
+Route::get('/createPost', [PostController::class, 'create'])->name('posts.create')->middleware('auth');
+Route::post('/posts', [PostController::class, 'store'])->name('posts.store')->middleware('auth');
+Route::post('/posts/preview', [PostController::class, 'preview'])->name('posts.preview')->middleware('auth');
 
 
 // Edit/Update/Delete routes
-Route::get('/posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit');
-Route::put('/posts/{id}', [PostController::class, 'update'])->name('posts.update');
-Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
+Route::get('/posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit')->middleware('auth');
+Route::put('/posts/{id}', [PostController::class, 'update'])->name('posts.update')->middleware('auth');
+Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy')->middleware('auth');
 
 //Authentication routes
 Auth::routes();
@@ -86,10 +86,10 @@ Route::delete('/profile/delete/{id}', [UserController::class, 'destroy'])->name(
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->middleware('auth','admin');
 
 //Comment 
-Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
-Route::get('/comments/{comment}/edit', [CommentController::class, 'edit'])->name('comments.edit');
-Route::put('/comments/{comment}', [CommentController::class, 'update'])->name('comments.update');
-Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
+Route::post('/comments', [CommentController::class, 'store'])->name('comments.store')->middleware('auth');
+Route::get('/comments/{comment}/edit', [CommentController::class, 'edit'])->name('comments.edit')->middleware('auth');
+Route::put('/comments/{comment}', [CommentController::class, 'update'])->name('comments.update')->middleware('auth');
+Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy')->middleware('auth');
 
 //Like
-Route::post('/comments/{comment}/like', [CommentController::class, 'like'])->name('comments.like');
+Route::post('/comments/{comment}/like', [CommentController::class, 'like'])->name('comments.like')->middleware('auth');
