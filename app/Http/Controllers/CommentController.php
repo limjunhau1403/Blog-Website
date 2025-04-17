@@ -9,18 +9,33 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
+    public function like(Comment $comment)
+    {
+        $like = $comment->likes()->where('user_id', auth()->id())->first();
+
+        if ($like) {
+            $like->delete(); // Unlike
+        } else {
+            $comment->likes()->create([
+                'user_id' => auth()->id()
+            ]);
+        }
+
+        return back();
+    }
+
     // Store a new comment
     public function store(Request $request)
     {
         $request->validate([
             'post_id' => 'required|exists:posts,id',
-            'content' => 'required|string',
+            'comment' => 'required|string',
         ]);
 
         Comment::create([
             'user_id' => Auth::id(), // Ensure the user is logged in
             'post_id' => $request->post_id,
-            'content' => $request->content,
+            'comment' => $request->comment,
         ]);
 
         return back()->with('success', 'Comment added successfully!');
@@ -45,11 +60,11 @@ class CommentController extends Controller
         $this->authorize('update', $comment);
 
         $request->validate([
-            'content' => 'required|string',
+            'comment' => 'required|string',
         ]);
 
         $comment->update([
-            'content' => $request->content,
+            'comment' => $request->comment,
         ]);
 
         return back()->with('success', 'Comment updated successfully!');

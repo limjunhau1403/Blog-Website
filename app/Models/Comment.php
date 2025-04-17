@@ -9,7 +9,7 @@ class Comment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'post_id', 'content'];
+    protected $fillable = ['user_id', 'post_id', 'comment'];
 
     public function user()
     {
@@ -20,4 +20,13 @@ class Comment extends Model
     {
         return $this->belongsTo(Post::class);
     }
+
+    public function likes() {
+        return $this->hasMany(Like::class);
+    }
+    
+    public function isLikedBy($user) {
+        return $this->likes()->where('user_id', $user->id)->exists();
+    }
+    
 }
