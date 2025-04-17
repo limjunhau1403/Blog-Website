@@ -11,24 +11,36 @@ class AdminController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Post::with(['user', 'comments.user']);
-
-        // Filters
-        if ($request->has('user_id') && $request->user_id != '') {
-            $query->where('user_id', $request->user_id);
+        // POSTS FILTERING
+        $postQuery = Post::with(['user', 'comments.user']);
+    
+        if ($request->filled('user_id')) {
+            $postQuery->where('user_id', $request->user_id);
         }
-
-        if ($request->has('title') && $request->title != '') {
-            $query->where('title', 'like', '%' . $request->title . '%');
+    
+        if ($request->filled('title')) {
+            $postQuery->where('title', 'like', '%' . $request->title . '%');
         }
-
+    
         if ($request->has('has_comments') && $request->has_comments === 'yes') {
-            $query->has('comments');
+            $postQuery->has('comments');
         }
-
-        $posts = $query->latest()->paginate(5, ['*'], 'posts_page');
-        $users = User::paginate(5, ['*'], 'users_page');
-
+    
+        $posts = $postQuery->latest()->paginate(5, ['*'], 'posts_page');
+    
+        // USERS FILTERING
+        $userQuery = User::query();
+    
+        if ($request->filled('user_name')) {
+            $userQuery->where('name', 'like', '%' . $request->user_name . '%');
+        }
+    
+        if ($request->filled('user_email')) {
+            $userQuery->where('email', 'like', '%' . $request->user_email . '%');
+        }
+    
+        $users = $userQuery->paginate(5, ['*'], 'users_page');
+    
         return view('admin', compact('posts', 'users'));
     }
 }
