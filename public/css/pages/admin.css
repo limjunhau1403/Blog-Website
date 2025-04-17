@@ -128,15 +128,43 @@ form.mb-4 .btn:hover {
 }
 
 /* Pagination */
+.w-5 {
+    display: none;
+}
+
 .pagination {
+    display: flex;
     justify-content: center;
+    margin-top: 30px;
+    list-style: none;
+    padding-left: 0;
 }
 
-.page-link {
+.pagination li {
+    margin: 0 4px;
+}
+
+.pagination li a,
+.pagination li span {
+    display: block;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f8f9fa;
     color: #232536;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-.page-item.active .page-link {
+.pagination li.active span {
     background-color: #232536;
+    color: white;
     border-color: #232536;
+}
+
+.pagination li a:hover {
+    background-color: #ffd11a;
+    color: #232536;
+    border-color: #ffd11a;
 }

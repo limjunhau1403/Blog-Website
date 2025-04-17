@@ -74,7 +74,9 @@
             </tbody>
         </table>
 
-        {{ $posts->links() }}
+        <div class="d-flex justify-content-center mt-4">
+            {{ $posts->links('pagination::bootstrap-4') }}
+        </div>
 
 
         <hr class="my-5">
@@ -119,5 +121,8 @@
             </tbody>
         </table>
 
+        <div class="d-flex justify-content-center mt-4">
+            {{ $users->links('pagination::bootstrap-4') }}
+        </div>
     </div>
 @endsection
