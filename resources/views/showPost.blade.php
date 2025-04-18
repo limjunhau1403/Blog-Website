@@ -25,54 +25,57 @@
 
                 <!--- Comment --->
                 @auth
-                <h3 style="font-weight: bold; margin-bottom: 20px;">Comments</h3>
-                <div style="margin-bottom: 40px;">
-                    @foreach($post->comments as $comment)
-                        <div style="border-bottom: 1px solid #ddd; padding: 15px 0;">
-                            <div style="font-weight: bold; font-size: 14px;">{{ $comment->user->name }}</div>
-                            <div style="font-size: 12px; color: #777;">{{ $comment->created_at->format('d M, Y') }}</div>
-                            <p style="margin-top: 8px; font-size: 14px; color: #444;">{{ $comment->comment }}</p>
+                    <h3 style="font-weight: bold; margin-top: 20%; margin-bottom: 20px;">Comments</h3>
+                    <div style="margin-bottom: 40px;">
+                        @foreach ($post->comments as $comment)
+                            <div style="border-bottom: 1px solid #ddd; padding: 15px 0;">
+                                <div style="font-weight: bold; font-size: 14px;">{{ $comment->user->name }}</div>
+                                <div style="font-size: 12px; color: #777;">{{ $comment->created_at->format('d M, Y') }}</div>
+                                <p style="margin-top: 8px; font-size: 14px; color: #444;">{{ $comment->comment }}</p>
 
-                            <form action="{{ route('comments.like', $comment->id) }}" method="POST" style="display: inline;">
-                                @csrf
-                                <button type="submit" style="background: none; border: none; cursor: pointer; font-size: 14px;">
-                                    ❤️ {{ $comment->likes->count() }}
-                                </button>
-                            </form>
-
-                            @can('update', $comment)
-                                <a href="{{ route('comments.edit', $comment) }}" style="margin-left: 10px;">Edit</a>
-                            @endcan
-
-                            @can('delete', $comment)
-                                <form action="{{ route('comments.destroy', $comment) }}" method="POST" style="display: inline;">
+                                <form action="{{ route('comments.like', $comment->id) }}" method="POST"
+                                    style="display: inline;">
                                     @csrf
-                                    @method('DELETE')
-                                    <button type="submit" style="color: red; background: none; border: none; cursor: pointer;">
-                                        Delete
+                                    <button type="submit"
+                                        style="background: none; border: none; cursor: pointer; font-size: 14px;">
+                                        ❤️ {{ $comment->likes->count() }}
                                     </button>
                                 </form>
-                            @endcan
 
-                        </div>
-                    @endforeach
-                </div>
+                                @can('update', $comment)
+                                    <a href="{{ route('comments.edit', $comment) }}" style="margin-left: 10px;">Edit</a>
+                                @endcan
 
-                <hr style="margin: 40px 0;">
+                                @can('delete', $comment)
+                                    <form action="{{ route('comments.destroy', $comment) }}" method="POST"
+                                        style="display: inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" style="color: red; background: none; border: none; cursor: pointer;">
+                                            Delete
+                                        </button>
+                                    </form>
+                                @endcan
 
-                <h4 style="font-weight: bold; margin-bottom: 10px;">Add comment</h4>
+                            </div>
+                        @endforeach
+                    </div>
 
-                <form action="{{ route('comments.store') }}" method="POST">
-                    @csrf
-                    <input type="hidden" name="post_id" value="{{ $post->id }}">
-                    <textarea name="comment" placeholder="Write your comment..." required
-                        style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; resize: vertical; min-height: 80px;"></textarea>
-                    <br><br>
-                    <button type="submit"
-                        style="background-color: black; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
-                        Post Comment
-                    </button>
-                </form>
+                    <hr style="margin: 40px 0;">
+
+                    <h4 style="font-weight: bold; margin-bottom: 10px;">Add comment</h4>
+
+                    <form action="{{ route('comments.store') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="post_id" value="{{ $post->id }}">
+                        <textarea name="comment" placeholder="Write your comment..." required
+                            style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; resize: vertical; min-height: 80px;"></textarea>
+                        <br><br>
+                        <button type="submit"
+                            style="background-color: black; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+                            Post Comment
+                        </button>
+                    </form>
                 @else
                     <p>You must <a href="{{ route('login') }}">log in</a> to comment.</p>
                 @endauth

@@ -41,22 +41,6 @@ Route::post('/contact', [ContactController::class, 'submit'])->name('contact.sub
 // Single Posts in showPosts.blade.php
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show')->middleware('view_post'); 
 
-// View Posts History
-Route::get('/history', function () {
-    return view('history', ['url' => 'posts history']);
-})->name('history')->middleware('auth');
-
-// Post creation routes
-Route::get('/createPost', [PostController::class, 'create'])->name('posts.create')->middleware('auth');
-Route::post('/posts', [PostController::class, 'store'])->name('posts.store')->middleware('auth');
-Route::post('/posts/preview', [PostController::class, 'preview'])->name('posts.preview')->middleware('auth');
-
-
-// Edit/Update/Delete routes
-Route::get('/posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit')->middleware('auth');
-Route::put('/posts/{id}', [PostController::class, 'update'])->name('posts.update')->middleware('auth');
-Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy')->middleware('auth');
-
 //Authentication routes
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -68,7 +52,6 @@ Route::post('/register', [RegisterController::class, 'register'])->name('registe
 // Login routes
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout.submit')->middleware('auth');
 
 // Reset password routes
 Route::get('/password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');  //Get the form to request a password reset link
@@ -77,16 +60,37 @@ Route::get('/password/reset/{token}', [ResetPasswordController::class, 'showRese
 Route::post('/password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');                 //Reset the password
 
 // Profile routes
-Route::get('/profile', [UserController::class, 'showProfile'])->name('profile.show')->middleware('auth');
-Route::get('/profile/edit/{id}', [UserController::class, 'showEditProfile'])->name('profile.edit')->middleware('auth');
-Route::post('/profile/update/{id}', [UserController::class, 'update'])->name('profile.update')->middleware('auth');
 Route::delete('/profile/delete/{id}', [UserController::class, 'destroy'])->name('profile.delete')->middleware('auth','admin');
 
 // Admin 
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->middleware('auth','admin');
 
-//Comment
 Route::middleware(['auth'])->group(function () {
+
+    // View Posts History
+    Route::get('/history', function () {
+        return view('history', ['url' => 'posts history']);
+    })->name('history');
+
+    // Logout route
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout.submit');
+
+    // Post creation routes
+    Route::get('/createPost', [PostController::class, 'create'])->name('posts.create');
+    Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
+    Route::post('/posts/preview', [PostController::class, 'preview'])->name('posts.preview');
+
+    // Edit/Update/Delete routes
+    Route::get('/posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit');
+    Route::put('/posts/{id}', [PostController::class, 'update'])->name('posts.update');
+    Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
+
+    // Profile routes
+    Route::get('/profile', [UserController::class, 'showProfile'])->name('profile.show');
+    Route::get('/profile/edit/{id}', [UserController::class, 'showEditProfile'])->name('profile.edit');
+    Route::post('/profile/update/{id}', [UserController::class, 'update'])->name('profile.update');
+
+    //Comments routes
     Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
     Route::get('/comments/{comment}/edit', [CommentController::class, 'edit'])->name('comments.edit');
     Route::put('/comments/{comment}', [CommentController::class, 'update'])->name('comments.update');
